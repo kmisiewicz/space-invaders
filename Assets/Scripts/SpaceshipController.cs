@@ -10,7 +10,6 @@ namespace KM.SpaceInvaders
         [SerializeField] float moveVelocity = 3f;
         [SerializeField] float maxVelocityChange = 1.5f;
 
-        [SerializeField] SpaceshipBulletManager bulletManager;
         [SerializeField] Transform shootingPoint;
         [SerializeField, Min(0.1f)]
         [Tooltip("Time in seconds between bullets being shot from player's ship")] 
@@ -43,7 +42,7 @@ namespace KM.SpaceInvaders
 
         private void ShootBullet()
         {
-            bulletManager?.Shoot(shootingPoint.position, "PlayerBullet");
+            BulletManager.Instance?.Shoot(shootingPoint.position, Vector2.up, "PlayerBullet");
         }
     }
 }
