@@ -1576,10 +1576,11 @@ MonoBehaviour:
   columnDistance: 0.9
   rowDistance: 0.8
   leftRightDistance: 1.7
-  stepDownDistance: 0.5
+  stepDownDistance: 0.35
   movementSpeed: 0.5
   enemiesSpawned: 0
   spawnEnemiesButton: 0
+  onHitSpeedMultiplier: 1.04
 --- !u!50 &674118831
 Rigidbody2D:
   serializedVersion: 4

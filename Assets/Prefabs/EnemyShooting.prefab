@@ -149,3 +149,4 @@ MonoBehaviour:
   bulletOrigin: {fileID: 4262916412904336292}
   minShootingInterval: 4
   maxShootingInterval: 7
+  onHitShotIntervalMultiplier: 0.97

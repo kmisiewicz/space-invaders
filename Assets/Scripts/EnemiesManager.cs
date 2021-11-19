@@ -24,6 +24,9 @@ namespace KM.SpaceInvaders
         [SerializeField] bool enemiesSpawned = false;
         [SerializeField, SimpleButton("SpawnEnemies")] bool spawnEnemiesButton;
 
+        [Header("Difficulty")]
+        [SerializeField] float onHitSpeedMultiplier = 1.1f;
+
         public int Columns => columns;
         public int Rows => rowConfig.Length;
 
@@ -106,6 +109,8 @@ namespace KM.SpaceInvaders
             {
                 GameManager.Instance.AdjustPoints(1);
                 collision.otherCollider.GetComponent<BasicEnemyBehaviour>().Deactivate();
+                movementSpeed *= onHitSpeedMultiplier;
+                AdjustEnemiesAfterHit();
             }
             else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
@@ -117,6 +122,7 @@ namespace KM.SpaceInvaders
             {
                 OnGameOver();
                 GameManager.Instance.GameOver("lost");
+                return;
             }
 
             collision.otherCollider.gameObject.SetActive(false);
@@ -134,6 +140,13 @@ namespace KM.SpaceInvaders
                 for (int j = 0; j < rowConfig.Length; j++)
                     _enemies[i][j].Deactivate();
             return;
+        }
+
+        private void AdjustEnemiesAfterHit()
+        {
+            for (int i = 0; i < columns; i++)
+                for (int j = 0; j < rowConfig.Length; j++)
+                    _enemies[i][j].OnOtherEnemiesHit();
         }
     }
 }

@@ -16,6 +16,8 @@ namespace KM.SpaceInvaders
         [Tooltip("Time in seconds between bullets being shot from player's ship")]
         float maxShootingInterval = 7f;
 
+        [SerializeField] float onHitShotIntervalMultiplier = 0.97f;
+
 
         float _shootingInterval;
 
@@ -35,6 +37,11 @@ namespace KM.SpaceInvaders
         public override void Deactivate()
         {
             CancelInvoke();
+        }
+
+        public override void OnOtherEnemiesHit()
+        {
+            _shootingInterval *= onHitShotIntervalMultiplier;
         }
     }
 }

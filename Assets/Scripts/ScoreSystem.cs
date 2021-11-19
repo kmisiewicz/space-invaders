@@ -86,7 +86,8 @@ namespace KM.SpaceInvaders
 
         public void ClearScores()
         {
-            topScores.ForEach(score => score = null);
+            if (topScores != null)
+                topScores.ForEach(score => score = null);
             PlayerPrefs.DeleteAll();
         }
     }

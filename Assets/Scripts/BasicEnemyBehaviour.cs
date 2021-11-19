@@ -14,9 +14,8 @@ namespace KM.SpaceInvaders
             Column = column;
         }
 
-        public virtual void Deactivate()
-        {
+        public virtual void Deactivate() { }
 
-        }
+        public virtual void OnOtherEnemiesHit() { }
     }
 }
