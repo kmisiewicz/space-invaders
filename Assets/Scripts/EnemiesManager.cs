@@ -16,13 +16,15 @@ namespace KM.SpaceInvaders
         [SerializeField] float columnDistance = 1f;
         [SerializeField] float rowDistance = 1f;
 
+        [Space]
+        [SerializeField] bool enemiesSpawned = false;
+        [SerializeField, SimpleButton("SpawnEnemies")] bool spawnEnemiesButton;
+
         [Header("Movement")]
         [SerializeField] float leftRightDistance = 1f;
         [SerializeField] float stepDownDistance = 1f;
         [SerializeField] float movementSpeed = 10f;
-
-        [SerializeField] bool enemiesSpawned = false;
-        [SerializeField, SimpleButton("SpawnEnemies")] bool spawnEnemiesButton;
+        
 
         [Header("Difficulty")]
         [SerializeField] float onHitSpeedMultiplier = 1.1f;
@@ -59,6 +61,8 @@ namespace KM.SpaceInvaders
                     yield return new WaitForFixedUpdate();
                 }
 
+                yield return new WaitForSeconds(0.5f);
+
                 // Move left
                 origin = target;
                 target += Vector3.left * leftRightDistance;
@@ -67,6 +71,8 @@ namespace KM.SpaceInvaders
                     _rb.MovePosition(transform.position + Vector3.left * movementSpeed * Time.deltaTime);
                     yield return new WaitForFixedUpdate();
                 }
+
+                yield return new WaitForSeconds(0.5f);
 
                 // Move down
                 origin = target;

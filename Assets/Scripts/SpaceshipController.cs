@@ -18,6 +18,8 @@ namespace KM.SpaceInvaders
 
         [SerializeField] EnemiesManager enemiesManager;
 
+        public float ShootingIntervalMultiplier { get; set; } = 1f;
+
         Rigidbody2D _rb;
 
         
@@ -47,7 +49,7 @@ namespace KM.SpaceInvaders
         private void ShootBullet()
         {
             BulletManager.Instance?.Shoot(shootingPoint.position, Vector2.up, "PlayerBullet");
-            Invoke("ShootBullet", shootingInterval);
+            Invoke("ShootBullet", shootingInterval * ShootingIntervalMultiplier);
         }
 
         public void OnGameOver()
