@@ -13,5 +13,10 @@ namespace KM.SpaceInvaders
             Row = row;
             Column = column;
         }
+
+        public virtual void Deactivate()
+        {
+
+        }
     }
 }

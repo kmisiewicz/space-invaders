@@ -1,5 +1,6 @@
 using KM.Utility;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace KM.SpaceInvaders
 {
@@ -15,6 +16,7 @@ namespace KM.SpaceInvaders
         [Tooltip("Time in seconds between bullets being shot from player's ship")] 
         float shootingInterval = 2f;
 
+        [SerializeField] EnemiesManager enemiesManager;
 
         Rigidbody2D _rb;
 
@@ -22,7 +24,9 @@ namespace KM.SpaceInvaders
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-            InvokeRepeating("ShootBullet", shootingInterval, shootingInterval);
+            if (enemiesManager == null)
+                enemiesManager = FindObjectOfType<EnemiesManager>();
+            Invoke("ShootBullet", shootingInterval);
         }
 
         private void FixedUpdate()
@@ -43,6 +47,20 @@ namespace KM.SpaceInvaders
         private void ShootBullet()
         {
             BulletManager.Instance?.Shoot(shootingPoint.position, Vector2.up, "PlayerBullet");
+            Invoke("ShootBullet", shootingInterval);
+        }
+
+        public void OnGameOver()
+        {
+            CancelInvoke();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyBullet"))
+            {
+                GameManager.Instance.AdjustPoints(-2 * enemiesManager.Rows);
+            }
         }
     }
 }

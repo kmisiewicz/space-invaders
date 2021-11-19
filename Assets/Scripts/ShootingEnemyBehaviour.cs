@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace KM.SpaceInvaders
@@ -32,6 +30,11 @@ namespace KM.SpaceInvaders
         {
             BulletManager.Instance?.Shoot(bulletOrigin.position, Vector2.down, "EnemyBullet");
             Invoke("ShootBullet", _shootingInterval);
+        }
+
+        public override void Deactivate()
+        {
+            CancelInvoke();
         }
     }
 }
