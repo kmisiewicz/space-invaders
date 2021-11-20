@@ -18,9 +18,19 @@ namespace KM.SpaceInvaders
 
         [SerializeField] EnemiesManager enemiesManager;
 
-        public float ShootingIntervalMultiplier { get; set; } = 1f;
+        public float ShootingIntervalMultiplier 
+        {
+            get => _shootingIntervalMultiplier;
+            set
+            {
+                CancelInvoke("ShootBullet");
+                _shootingIntervalMultiplier = value;
+                ShootBullet();
+            } 
+        }
 
         Rigidbody2D _rb;
+        float _shootingIntervalMultiplier = 1f;
 
         
         private void Awake()

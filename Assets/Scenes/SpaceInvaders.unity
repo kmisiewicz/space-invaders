@@ -1654,8 +1654,8 @@ MonoBehaviour:
   enemiesSpawned: 0
   spawnEnemiesButton: 0
   leftRightDistance: 1.7
-  stepDownDistance: 0.35
-  movementSpeed: 0.5
+  stepDownDistance: 0.375
+  movementSpeed: 0.52
   onHitSpeedMultiplier: 1.05
 --- !u!50 &674118831
 Rigidbody2D:
@@ -3093,8 +3093,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2132121603}
-        m_TargetAssemblyTypeName: KM.SpaceInvaders.SpaceshipPowerUp, Assembly-CSharp
-        m_MethodName: OnLoadShotSpeedBoostActivated
+        m_TargetAssemblyTypeName: KM.SpaceInvaders.SpaceshipPowerUpManager, Assembly-CSharp
+        m_MethodName: OnShotSpeedBoostActivated
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

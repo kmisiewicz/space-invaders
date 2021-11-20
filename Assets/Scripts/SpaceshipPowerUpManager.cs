@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace KM.SpaceInvaders
 {
     [RequireComponent(typeof(SpaceshipController))]
-    public class SpaceshipPowerUp : MonoBehaviour
+    public class SpaceshipPowerUpManager : MonoBehaviour
     {
         [SerializeField] Slider shotSpeedBoostSlider;
         [SerializeField] Button shotSpeedBoostButton;
@@ -40,7 +40,7 @@ namespace KM.SpaceInvaders
             shotSpeedBoostFillImage.color = activeSliderColor;
         }
 
-        public void OnLoadShotSpeedBoostActivated()
+        public void OnShotSpeedBoostActivated()
         {
             _playerSpaceship.ShootingIntervalMultiplier = 0.5f;
             shotSpeedBoostButton.interactable = false;
